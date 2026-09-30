@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">OmniNoteConnect</string>
+    <string-array name="dummy_insight_title">
+        <item>From Lists to Notebooks: The Rise of Hybrid Note</item>
+        <item>How Note Apps Can Enhance Your Learning </item>
+        <item>Mind Mapping Makes a Comeback</item>
+    </string-array>
+    <string-array name="dummy_insight_subtitle">
+        <item>Jervis Bay </item>
+        <item>Zhangye Danxia </item>
+        <item>Lake Hillier</item>
+    </string-array>
+    <integer-array name="dummy_insight_photo">
+        <item>@drawable/trends</item>
+        <item>@drawable/trends2</item>
+        <item>@drawable/trends</item>
+    </integer-array>
+    <string name="time_format">%1$s, %2$s - %3$s</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+
+    <string name="display_header">Display</string>
+    <string name="pref_dark_title">Dark mode</string>
+    <string name="pref_key_dark" translatable="false">key_dark_mode</string>
+    <string name="pref_dark_auto" translatable="false">auto</string>
+    <string name="pref_dark_on" translatable="false">on</string>
+    <string name="pref_dark_off" translatable="false">off</string>
+    <string name="dark_mode_auto">Automatic</string>
+    <string name="dark_mode_on">Dark mode</string>
+    <string name="dark_mode_off">Light mode</string>
+    <string name="delete_course">Delete Course</string>
+    <string name="time">Time</string>
+    <string name="delete_alert">Delete this course?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="detail">Course Detail</string>
+    <string name="delete_success_message">Course deleted successfully</string>
+    <string name="sort_by_time">Sort by Time</string>
+    <string name="sort_by_course_name">Sort by Course Name</string>
+    <string name="sort_by_lecturer">Sort by lecturer</string>
+    <string name="empty_home_schedule">There are no more schedules today</string>
+    <string name="empty_list_message">No courses added yet</string>
+    <string name="input_empty_message">Course name and time cannot be empty</string>
+</resources>
