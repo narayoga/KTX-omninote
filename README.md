@@ -67,12 +67,14 @@ Kebutuhan: Android Studio (atau JDK 17 + Android SDK platform 34).
 ### Membuat Release baru
 
 APK di halaman Releases dibuat otomatis oleh GitHub Actions ([.github/workflows/release.yml](.github/workflows/release.yml)).
-Cukup buat tag yang diawali `v` lalu push:
+Ada dua cara:
 
-```
-git tag v0.2.0
-git push origin v0.2.0
-```
+- **Dari GitHub:** tab *Actions* → *Build APK & Release* → *Run workflow*, isi kolom versi (contoh `v0.2.0`), lalu jalankan.
+- **Dari terminal:** buat tag yang diawali `v` lalu push:
+  ```
+  git tag v0.2.0
+  git push origin v0.2.0
+  ```
 
 Supaya peta berfungsi di APK hasil Actions, simpan API key di
 *Settings → Secrets and variables → Actions* dengan nama `MAPS_API_KEY`.
