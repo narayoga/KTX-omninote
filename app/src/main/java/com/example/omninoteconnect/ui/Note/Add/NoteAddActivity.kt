@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -18,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.omninoteconnect.databinding.ActivityNoteAddBinding
-import com.example.omninoteconnect.ui.Map.MapsActivity
+import com.example.omninoteconnect.R
 import com.example.omninoteconnect.ui.Note.NoteAddViewModelFactory
 import com.example.omninoteconnect.util.DatePickerFragment
 import com.example.omninoteconnect.util.TimePickerFragment
@@ -58,8 +57,8 @@ class NoteAddActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
 
         etTitle = binding.etNoteTitle
         date = binding.llDate
-        tvStart = binding.startTimeText
-        tvEnd = binding.endTimeText
+        tvStart = binding.tvStartTime
+        tvEnd = binding.tvEndTime
         etDesc = binding.etNoteDesc
         etNoteLatitude = binding.etNoteLatitude
         etNoteLongitude = binding.etNoteLongitude
@@ -67,10 +66,11 @@ class NoteAddActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
         val viewFactory = NoteAddViewModelFactory.createFactory(this)
         viewModel = ViewModelProvider(this, viewFactory)[NoteAddViewModel::class.java]
         viewModel.saved.observe(this) {
-            if (it.getContentIfNotHandled() == true) {
+            val isSaved = it.getContentIfNotHandled()
+            if (isSaved == true) {
                 finish()
-            } else {
-                Log.d("addNote", "$it")
+            } else if (isSaved == false) {
+                Toast.makeText(this, getString(R.string.input_empty_message), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -88,15 +88,23 @@ class NoteAddActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
         }
 
         submitBtn.setOnClickListener{
-            viewModel.insertNote(
-                etTitle.text.toString().trim(),
-                dueDate,
-                tvStart.text.toString(),
-                tvEnd.text.toString(),
-                etDesc.text.toString().trim(),
-                etNoteLatitude.text.toString().trim().toDouble(),
-                etNoteLongitude.text.toString().trim().toDouble()
-            )
+            val latitudeText = etNoteLatitude.text.toString().trim()
+            val longitudeText = etNoteLongitude.text.toString().trim()
+
+            // cek dulu lokasinya sudah terisi, kalau kosong toDouble() bisa bikin crash
+            if (latitudeText.isEmpty() || longitudeText.isEmpty()) {
+                Toast.makeText(this, getString(R.string.location_empty_message), Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.insertNote(
+                    etTitle.text.toString().trim(),
+                    dueDate,
+                    tvStart.text.toString(),
+                    tvEnd.text.toString(),
+                    etDesc.text.toString().trim(),
+                    latitudeText.toDouble(),
+                    longitudeText.toDouble()
+                )
+            }
         }
     }
 
@@ -124,8 +132,8 @@ class NoteAddActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
     private  fun getMyLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener {
             if (it == null) {
-                Toast.makeText(this, "Sorry can't get location $it", Toast.LENGTH_SHORT).show()
-            } else it.apply {
+                Toast.makeText(this, getString(R.string.location_failed), Toast.LENGTH_SHORT).show()
+            } else {
                 etNoteLatitude.setText(it.latitude.toString())
                 etNoteLongitude.setText(it.longitude.toString())
             }
@@ -136,12 +144,9 @@ class NoteAddActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == 1) {
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-                    getMyLocation()
-                } else {
-                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-                }
+                getMyLocation()
+            } else {
+                Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
             }
         }
     }

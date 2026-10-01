@@ -27,5 +27,7 @@ mengikuti gaya kode yang sudah ada di repo ini.
 
 - Proyek memakai Gradle 8.0 + AGP 8.1.1, butuh **JDK 17** (tidak jalan di JDK 21).
 - Butuh Android SDK (platform android-34, build-tools 34). Lokasi SDK dari env `ANDROID_HOME`.
-- Cek compile: `./gradlew assembleDebug`
+- Cek compile: `bash ./gradlew assembleDebug` (file `gradlew` belum punya izin eksekusi, jadi panggil lewat `bash`).
+- Di cloud session: set `JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64` dan `ANDROID_HOME=/opt/android-sdk`.
+  Kalau download dependency kena HTTP 429 dari Maven Central, ulangi build dengan `--max-workers=1` setelah jeda.
 - `MAPS_API_KEY` dibaca dari `local.properties` (boleh kosong untuk compile).

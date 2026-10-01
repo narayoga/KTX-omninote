@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.omninoteconnect.R
 import com.example.omninoteconnect.databinding.RowNoteBinding
 import com.example.omninoteconnect.util.DateConverter
-import com.example.omninoteconnect.util.DayName
 
 class NoteAdapter(private val clickListener:(Notes) -> Unit) :
     PagedListAdapter<Notes, NoteViewHolder>(DIFF_CALLBACK){
@@ -51,8 +50,8 @@ class NoteViewHolder(view: View, binding: RowNoteBinding): RecyclerView.ViewHold
     private val titleTextView = binding.tvTitle
     private val timeTextView = binding.tvTime
     private val descTextView = binding.tvDesc
-    private val latTextView = binding.tvLatitude
-    private val lonTextView = binding.tvLongitude
+    private val locationTextView = binding.tvLocation
+    private val locationString = itemView.context.resources.getString(R.string.location_format)
 
     fun bind(notes: Notes, clickListener: (Notes) -> Unit) {
         this.note = notes
@@ -62,8 +61,7 @@ class NoteViewHolder(view: View, binding: RowNoteBinding): RecyclerView.ViewHold
             titleTextView.text = title
             timeTextView.text = timeFormat
             descTextView.text = description
-            latTextView.text = latitude.toString()
-            lonTextView.text = longitude.toString()
+            locationTextView.text = String.format(locationString, latitude, longitude)
         }
 
         itemView.setOnClickListener{

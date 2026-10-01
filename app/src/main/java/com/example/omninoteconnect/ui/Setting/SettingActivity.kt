@@ -1,25 +1,30 @@
-package com.example.omninoteconnect.ui.Auth
+package com.example.omninoteconnect.ui.Setting
 
-import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import com.example.omninoteconnect.databinding.ActivityMainBinding
-import com.example.omninoteconnect.ui.DashboardActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.omninoteconnect.R
+import com.example.omninoteconnect.databinding.ActivitySettingBinding
 
-class MainActivity : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
         setupAction()
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.setting_container, SettingFragment())
+                .commit()
+        }
     }
 
     private fun setupView() {
@@ -36,12 +41,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.buttonStarted.setOnClickListener{
-            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-            startActivity(intent)
-            // tutup layar welcome supaya tombol back dari Home tidak kembali ke sini
+        binding.settingBackBtn.setOnClickListener {
             finish()
         }
     }
-
 }

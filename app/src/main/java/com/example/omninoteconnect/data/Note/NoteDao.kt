@@ -22,7 +22,4 @@ interface NoteDao {
 
     @Delete
     suspend fun delete(notes: Notes)
-
-    @Query("SELECT * FROM notes ORDER BY :param")
-    fun sort(param: String): DataSource.Factory<Int, Notes>
 }

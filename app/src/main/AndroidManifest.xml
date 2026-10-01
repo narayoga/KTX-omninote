@@ -16,6 +16,7 @@
         android:required="false"/>
 
     <application
+        android:name=".OmniApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -36,16 +37,10 @@
             android:name=".ui.Note.Detail.NoteDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Note.NoteActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Map.MapsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.BottomTab.ProfileActivity"
+            android:name=".ui.Setting.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".ui.Auth.MainActivity"

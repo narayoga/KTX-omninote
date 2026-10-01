@@ -24,12 +24,19 @@
 
 ## Fase 0: Fondasi dan bersih-bersih (lokal)
 
-- [ ] Satu Activity + Fragment, bottom bar pindah tab secara manual (replace fragment).
-- [ ] Buang Search, Wallet, kartu template, dummy Insight.
-- [ ] Design system: warna, tipografi, ukuran jarak, tema terang/gelap.
-- [ ] Perbaiki bug: crash `toDouble()` saat lat/lon kosong (`NoteAddActivity`), query sort `ORDER BY :param` (`NoteDao`).
+- [x] Satu Activity + Fragment, bottom bar pindah tab secara manual (replace fragment).
+- [x] Buang Search, Wallet, kartu template, dummy Insight, gambar template yang tidak dipakai.
+- [x] Design system: warna (`values/colors.xml` + `values-night/colors.xml`), gaya teks (`values/styles.xml`),
+      ukuran jarak (`values/dimens.xml`), ikon vektor, tema terang/gelap.
+- [x] Setting: pilihan mode gelap (Ikuti sistem / Gelap / Terang).
+- [x] Perbaiki bug: crash `toDouble()` saat lat/lon kosong (`NoteAddActivity`), query sort `ORDER BY :param` (`NoteDao`),
+      jam yang dipilih tertulis ke label bukan ke `tv_start_time`/`tv_end_time`.
 
 Selesai kalau: 5 tab bisa dibuka, tombol back wajar, dark mode jalan.
+
+Catatan sisa Fase 0 (dikerjakan di Fase 1):
+- Klik catatan membuka `NoteDetailActivity` yang masih kosong.
+- `QueryUtil.nearestQuery()` masih query tabel `course` dari template lama dan belum dipakai.
 
 ## Fase 1: Inti to-do + alarm (lokal)
 
