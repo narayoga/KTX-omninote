@@ -17,12 +17,24 @@ class NoteRepository(private val dao: NoteDao) {
         return LivePagedListBuilder(dao.getAll(query), config).build()
     }
 
-    fun getCourse(id: Int): LiveData<Notes> {
+    fun getNote(id: Int): LiveData<Notes?> {
         return dao.getNote(id)
     }
 
-    suspend fun insert(note: Notes) {
-        dao.insert(note)
+    fun getAllNotesList(): LiveData<List<Notes>> {
+        return dao.getAllNotesList()
+    }
+
+    fun getActiveNotesSync(): List<Notes> {
+        return dao.getActiveNotesSync()
+    }
+
+    suspend fun insert(note: Notes): Long {
+        return dao.insert(note)
+    }
+
+    suspend fun update(note: Notes) {
+        dao.update(note)
     }
 
     suspend fun delete(note: Notes) {

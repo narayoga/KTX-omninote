@@ -1,11 +1,15 @@
 package com.example.omninoteconnect.ui
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.omninoteconnect.R
@@ -21,6 +25,14 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
     private var currentTab = TAB_HOME
 
+    private val requestNotificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            Toast.makeText(this, getString(R.string.notification_permission_denied), Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -32,6 +44,7 @@ class DashboardActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // pertama kali dibuka, tampilkan Home
             showTab(TAB_HOME)
+            checkNotificationPermission()
         } else {
             // kalau layar diputar, fragment-nya sudah dikembalikan otomatis oleh sistem,
             // jadi kita cukup ingat tab mana yang aktif lalu warnai ulang
@@ -43,6 +56,16 @@ class DashboardActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_TAB, currentTab)
+    }
+
+    // Android 13 ke atas: aplikasi harus minta izin dulu sebelum boleh menampilkan notifikasi pengingat
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
     }
 
     private fun setupView() {

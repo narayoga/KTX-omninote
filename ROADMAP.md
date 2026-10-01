@@ -34,18 +34,24 @@
 
 Selesai kalau: 5 tab bisa dibuka, tombol back wajar, dark mode jalan.
 
-Catatan sisa Fase 0 (dikerjakan di Fase 1):
-- Klik catatan membuka `NoteDetailActivity` yang masih kosong.
-- `QueryUtil.nearestQuery()` masih query tabel `course` dari template lama dan belum dipakai.
+Catatan sisa Fase 0 (sudah dikerjakan di Fase 1):
+- [x] Klik catatan membuka `NoteDetailActivity` yang masih kosong.
+- [x] `QueryUtil.nearestQuery()` masih query tabel `course` dari template lama (dihapus).
 
 ## Fase 1: Inti to-do + alarm (lokal)
 
-- [ ] Edit catatan dan tanda selesai.
-- [ ] Pilih lokasi dengan tap di peta (ganti input lat/lon manual), simpan nama tempat.
-- [ ] Alarm: pengingat + notifikasi, izin POST_NOTIFICATIONS (Android 13+), izin exact alarm (Android 12+),
-      jadwal ulang setelah HP restart, klik notifikasi buka detail.
-- [ ] Setting: dark mode, nyala/mati pengingat, berapa menit sebelum kegiatan.
-- [ ] Home: "Hari ini", "Pengingat berikutnya", Insight dari data asli.
+- [x] Edit catatan dan tanda selesai (checkbox di daftar + tombol di detail). Layar detail catatan.
+- [x] Pilih lokasi dengan menggeser peta (`LocationPickerActivity`), nama tempat terisi otomatis dari alamat
+      dan bisa diubah. Database naik ke versi 2 (kolom `placeName`, `isDone`) dengan migrasi, data lama aman.
+- [x] Alarm: pengingat + notifikasi (`alarm/`), izin POST_NOTIFICATIONS (Android 13+), izin exact alarm (Android 12+,
+      kalau belum diizinkan tetap jalan tapi bisa telat), jadwal ulang setelah HP restart, klik notifikasi buka detail.
+- [x] Setting: dark mode, nyala/mati pengingat, berapa menit sebelum kegiatan, status izin alarm tepat waktu.
+- [x] Home: "Kegiatan berikutnya", ringkasan (hari ini / selesai / akan datang) dari data asli.
+
+Catatan sisa Fase 1:
+- Lokasi masih wajib diisi. Catatan tanpa tempat (mis. "bayar listrik") tetap harus pilih lokasi.
+- Data yang sudah diisi di layar tambah catatan hilang kalau layar diputar.
+- Belum diuji di HP sungguhan (hanya Robolectric + render Paparazzi).
 
 Selesai kalau: aplikasi to-do + alarm utuh tanpa internet.
 

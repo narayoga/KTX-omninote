@@ -1,5 +1,6 @@
 package com.example.omninoteconnect.ui.Note
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
@@ -20,6 +21,9 @@ class NoteViewModel (private val repository: NoteRepository) : ViewModel() {
         repository.getAllNote(it)
     }
 
+    // semua catatan (tanpa paging) untuk menghitung ringkasan di Home
+    val allNotes: LiveData<List<Notes>> = repository.getAllNotesList()
+
     fun sort(newValue: SortType) {
         _sortParams.value = newValue
     }
@@ -27,6 +31,12 @@ class NoteViewModel (private val repository: NoteRepository) : ViewModel() {
     fun delete(note: Notes) {
         viewModelScope.launch {
             repository.delete(note)
+        }
+    }
+
+    fun setDone(note: Notes, isDone: Boolean) {
+        viewModelScope.launch {
+            repository.update(note.copy(isDone = isDone))
         }
     }
 

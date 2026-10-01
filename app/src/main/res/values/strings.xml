@@ -49,7 +49,7 @@
     <string name="end_time">Selesai</string>
     <string name="location">Lokasi</string>
     <string name="input_empty_message">Judul dan waktu tidak boleh kosong</string>
-    <string name="location_empty_message">Lokasi belum didapat. Pastikan GPS aktif dan izin lokasi diberikan.</string>
+    <string name="location_empty_message">Lokasi belum dipilih. Tekan kartu Lokasi untuk memilih di peta.</string>
     <string name="location_failed">Gagal mengambil lokasi</string>
     <string name="permission_denied">Izin lokasi ditolak</string>
 
@@ -64,6 +64,64 @@
     <string name="dark_mode_auto">Ikuti sistem</string>
     <string name="dark_mode_on">Gelap</string>
     <string name="dark_mode_off">Terang</string>
+
+    <!-- Edit catatan -->
+    <string name="edit_note_title">Edit Catatan</string>
+    <string name="choose_location">Pilih lokasi</string>
+    <string name="current_location">Lokasi saat ini</string>
+    <string name="tap_to_choose_location">Tekan untuk memilih lokasi di peta</string>
+
+    <!-- Pilih lokasi -->
+    <string name="picker_title">Pilih Lokasi</string>
+    <string name="hint_place_name">Nama tempat</string>
+    <string name="use_this_location">Pakai lokasi ini</string>
+    <string name="map_not_ready">Tunggu sebentar, peta belum selesai dimuat</string>
+    <string name="move_map_hint">Geser peta sampai pin tepat di lokasi kegiatan</string>
+
+    <!-- Detail catatan -->
+    <string name="detail_title">Detail Catatan</string>
+    <string name="status_done">Selesai</string>
+    <string name="status_not_done">Belum selesai</string>
+    <string name="mark_done">Tandai selesai</string>
+    <string name="mark_not_done">Tandai belum selesai</string>
+    <string name="delete_note">Hapus catatan</string>
+    <string name="delete_confirm_title">Hapus catatan ini?</string>
+    <string name="delete_confirm_message">Catatan dan pengingatnya akan dihapus permanen.</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="open_in_maps">Buka di Google Maps</string>
+    <string name="no_maps_app">Tidak ada aplikasi peta di HP ini</string>
+    <string name="no_description">Tidak ada catatan tambahan</string>
+    <string name="note_not_found">Catatan tidak ditemukan</string>
+    <string name="time_range">%1$s - %2$s</string>
+
+    <!-- Home: ringkasan -->
+    <string name="next_reminder">Kegiatan berikutnya</string>
+    <string name="no_next_reminder">Tidak ada kegiatan yang akan datang</string>
+    <string name="today">Hari ini</string>
+    <string name="insight">Ringkasan</string>
+    <string name="insight_today">Hari ini</string>
+    <string name="insight_done">Selesai</string>
+    <string name="insight_upcoming">Akan datang</string>
+    <string name="done_count">%1$d/%2$d</string>
+
+    <!-- Pengingat / alarm -->
+    <string name="reminder_channel_name">Pengingat kegiatan</string>
+    <string name="reminder_channel_desc">Notifikasi sebelum kegiatan dimulai</string>
+    <string name="reminder_message">Mulai jam %1$s</string>
+    <string name="reminder_message_with_place">Mulai jam %1$s di %2$s</string>
+    <string name="notification_permission_denied">Izin notifikasi ditolak, pengingat tidak akan muncul</string>
+
+    <string name="reminder_header">Pengingat</string>
+    <string name="pref_key_reminder" translatable="false">key_reminder</string>
+    <string name="pref_reminder_title">Aktifkan pengingat</string>
+    <string name="pref_reminder_summary">Notifikasi muncul sebelum kegiatan dimulai</string>
+    <string name="pref_key_reminder_minutes" translatable="false">key_reminder_minutes</string>
+    <string name="pref_reminder_minutes_title">Waktu pengingat</string>
+    <string name="pref_key_exact_alarm" translatable="false">key_exact_alarm</string>
+    <string name="pref_exact_alarm_title">Alarm tepat waktu</string>
+    <string name="pref_exact_alarm_on">Diizinkan</string>
+    <string name="pref_exact_alarm_off">Belum diizinkan, pengingat bisa terlambat beberapa menit. Tekan untuk mengizinkan.</string>
 
     <string name="back">Kembali</string>
     <string name="save">Simpan</string>

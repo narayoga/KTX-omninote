@@ -13,4 +13,29 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/reminder_header">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="@string/pref_key_reminder"
+            app:summary="@string/pref_reminder_summary"
+            app:title="@string/pref_reminder_title" />
+
+        <ListPreference
+            app:defaultValue="10"
+            app:dependency="@string/pref_key_reminder"
+            app:entries="@array/reminder_minutes"
+            app:entryValues="@array/reminder_minutes_value"
+            app:key="@string/pref_key_reminder_minutes"
+            app:title="@string/pref_reminder_minutes_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <!-- Hanya muncul di Android 12 ke atas (diatur di SettingFragment) -->
+        <Preference
+            app:dependency="@string/pref_key_reminder"
+            app:key="@string/pref_key_exact_alarm"
+            app:title="@string/pref_exact_alarm_title" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -242,53 +242,76 @@
             app:layout_constraintStart_toStartOf="@id/il_title"
             app:layout_constraintTop_toBottomOf="@id/il_desc" />
 
-        <!-- Lokasi diisi otomatis dari GPS (nanti di Fase 1 diganti pilih di peta) -->
-        <LinearLayout
-            android:id="@+id/ll_location"
+        <!-- Kartu lokasi. Diklik untuk membuka layar pilih lokasi di peta -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_xs"
-            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/surface"
+            app:cardCornerRadius="@dimen/radius_button"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="@id/il_title"
             app:layout_constraintStart_toStartOf="@id/il_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_location_label">
+            app:layout_constraintTop_toBottomOf="@id/tv_location_label"
+            app:strokeColor="@color/outline"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_latitude"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="lat">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_m">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_note_latitude"
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_oval_dashboard">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_place"
+                        app:tint="@color/primary" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/tv_place_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@string/choose_location"
+                        android:textAppearance="@style/TextAppearance.Omni.Body" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_longitude"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_m"
-                android:layout_weight="1"
-                android:hint="lon">
+                    <TextView
+                        android:id="@+id/tv_coordinate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tap_to_choose_location"
+                        android:textAppearance="@style/TextAppearance.Omni.Caption" />
+                </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_note_longitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_secondary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

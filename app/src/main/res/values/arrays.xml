@@ -11,4 +11,22 @@
         <item>@string/pref_dark_on</item>
         <item>@string/pref_dark_off</item>
     </string-array>
+
+    <string-array name="reminder_minutes">
+        <item>Tepat saat mulai</item>
+        <item>5 menit sebelum</item>
+        <item>10 menit sebelum</item>
+        <item>15 menit sebelum</item>
+        <item>30 menit sebelum</item>
+        <item>1 jam sebelum</item>
+    </string-array>
+
+    <string-array name="reminder_minutes_value" translatable="false">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
 </resources>
