@@ -1,0 +1,73 @@
+# Build APK lalu taruh di GitHub Release.
+#
+# Cara pakai:
+#   - Buat tag yang diawali "v" lalu push, contoh:
+#       git tag v0.1.0-mvp && git push origin v0.1.0-mvp
+#     Workflow ini akan build APK dan membuat Release dengan APK terlampir.
+#   - Atau jalankan manual dari tab Actions (Run workflow): APK hanya disimpan
+#     sebagai artifact, tidak membuat Release.
+#
+# Peta (Google Maps) butuh API key. Simpan di Settings > Secrets and variables > Actions
+# dengan nama MAPS_API_KEY. Kalau tidak ada, APK tetap jadi tapi peta tampil kosong.
+
+name: Build APK & Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode
+        uses: actions/checkout@v4
+
+      - name: Pasang JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Cache Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Tulis local.properties (API key Maps)
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+        run: echo "MAPS_API_KEY=${MAPS_API_KEY}" > local.properties
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Beri nama APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk "OmniNoteConnect-${GITHUB_REF_NAME}.apk"
+
+      - name: Simpan APK sebagai artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OmniNoteConnect-apk
+          path: OmniNoteConnect-*.apk
+
+      - name: Buat GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: OmniNoteConnect-*.apk
+          body: |
+            APK untuk dicoba langsung di HP Android (minimal Android 5.1).
+
+            **Cara pasang:** unduh file `.apk` di bawah, buka di HP, lalu izinkan
+            "Instal aplikasi tidak dikenal" kalau diminta.
+
+            Catatan:
+            - Ini build **debug** untuk testing, bukan versi Play Store.
+            - Data catatan hanya tersimpan di HP (belum ada akun / sinkronisasi).
+            - Detail fitur dan keterbatasan ada di README.
