@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Warna dasar, tidak berubah di mode gelap -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="dark_blue">#32357a</color>
-    <color name="light_blue">#f2f1f6</color>
-    <color name="white_smoke">#7a7a7a</color>
-    <color name="ripple_color">#E0E0E0</color>
-    <color name="ripple_start_color">#000000</color>
-    <color name="ripple_end_color">#E0E0E0</color>
-    <color name="textPrimary">#000000</color>
+
+    <!-- Warna layar welcome. Sengaja tidak ikut mode gelap karena gambar
+         template (women.png, arc_1.png) sudah punya warna latar sendiri -->
+    <color name="brand">#32357A</color>
+    <color name="brand_light">#F2F1F6</color>
+    <color name="brand_text">#1C1B29</color>
+    <color name="brand_text_secondary">#6B6A7A</color>
+
+    <!-- Warna tema (mode terang). Versi mode gelap ada di values-night/colors.xml -->
+    <color name="primary">#32357A</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="header_background">#32357A</color>
+    <color name="header_text">#FFFFFF</color>
+    <color name="background">#F2F1F6</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_soft">#E3E0F1</color>
+    <color name="text_primary">#1C1B29</color>
+    <color name="text_secondary">#6B6A7A</color>
+    <color name="outline">#DDDBE8</color>
+    <color name="nav_inactive">#9A99A8</color>
+    <color name="danger">#C62828</color>
+    <color name="ripple_color">#1F32357A</color>
 </resources>

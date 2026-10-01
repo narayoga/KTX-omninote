@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.Note.Add.LocationPickerActivity">
+
+    <!-- Peta -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/card_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Pin di tengah peta. Ujung bawah pin = titik yang dipilih,
+         jadi pin digeser ke atas setengah tingginya -->
+    <ImageView
+        android:id="@+id/iv_center_pin"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_place"
+        android:translationY="-24dp"
+        app:layout_constraintBottom_toBottomOf="@id/map"
+        app:layout_constraintEnd_toEndOf="@id/map"
+        app:layout_constraintStart_toStartOf="@id/map"
+        app:layout_constraintTop_toTopOf="@id/map"
+        app:tint="@color/danger" />
+
+    <!-- Tombol kembali -->
+    <FrameLayout
+        android:id="@+id/picker_back_btn"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="@dimen/space_m"
+        android:layout_marginTop="@dimen/space_l"
+        android:background="@drawable/background_oval_surface"
+        android:clickable="true"
+        android:contentDescription="@string/back"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_effect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/text_primary" />
+    </FrameLayout>
+
+    <!-- Kartu bawah: nama tempat + tombol pakai lokasi -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_m">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/picker_title"
+                android:textAppearance="@style/TextAppearance.Omni.Title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/move_map_hint"
+                android:textAppearance="@style/TextAppearance.Omni.Caption" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_place_name"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:hint="@string/hint_place_name"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_button"
+                app:boxCornerRadiusBottomStart="@dimen/radius_button"
+                app:boxCornerRadiusTopEnd="@dimen/radius_button"
+                app:boxCornerRadiusTopStart="@dimen/radius_button">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_place_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_picker_coordinate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:textAppearance="@style/TextAppearance.Omni.Caption"
+                tools:text="-6.20000, 106.81667" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_use_location"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="@dimen/space_m"
+                android:backgroundTint="@color/primary"
+                android:text="@string/use_this_location"
+                android:textAllCaps="false"
+                android:textColor="@color/on_primary"
+                android:textSize="16sp"
+                app:cornerRadius="@dimen/radius_button" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

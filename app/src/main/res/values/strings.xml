@@ -1,61 +1,128 @@
 <resources>
     <string name="app_name">OmniNoteConnect</string>
-    <string-array name="dummy_insight_title">
-        <item>From Lists to Notebooks: The Rise of Hybrid Note</item>
-        <item>How Note Apps Can Enhance Your Learning </item>
-        <item>Mind Mapping Makes a Comeback</item>
-    </string-array>
-    <string-array name="dummy_insight_subtitle">
-        <item>Jervis Bay </item>
-        <item>Zhangye Danxia </item>
-        <item>Lake Hillier</item>
-    </string-array>
-    <integer-array name="dummy_insight_photo">
-        <item>@drawable/trends</item>
-        <item>@drawable/trends2</item>
-        <item>@drawable/trends</item>
-    </integer-array>
+
+    <!-- Welcome -->
+    <string name="welcome_title">Selamat datang di\nOmniNote Connect</string>
+    <string name="welcome_desc">Catat kegiatanmu, tandai lokasinya, dan bagikan ke teman dalam satu aplikasi.</string>
+    <string name="get_started">Mulai</string>
+
+    <!-- Bottom bar -->
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_notification">Notifikasi</string>
+    <string name="nav_profile">Profile</string>
+    <string name="add_note">Tambah catatan</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Hai!</string>
+    <string name="my_notes">Catatan Saya</string>
+    <string name="empty_note_title">Belum ada catatan</string>
+    <string name="empty_note_desc">Tekan tombol + di bawah untuk menambah catatan pertamamu.</string>
+    <string name="note_deleted">Catatan dihapus</string>
+    <string name="location_format">%1$.5f, %2$.5f</string>
     <string name="time_format">%1$s, %2$s - %3$s</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
 
-    <string name="monday">Monday</string>
-    <string name="tuesday">Tuesday</string>
-    <string name="wednesday">Wednesday</string>
-    <string name="thursday">Thursday</string>
-    <string name="friday">Friday</string>
-    <string name="saturday">Saturday</string>
-    <string name="sunday">Sunday</string>
-    <string name="start_time">Start Time</string>
-    <string name="end_time">End Time</string>
+    <!-- Map -->
+    <string name="map_title">Peta Kegiatan</string>
+    <string name="map_subtitle">Lokasi catatanmu dan teman akan muncul di sini</string>
 
-    <string name="display_header">Display</string>
-    <string name="pref_dark_title">Dark mode</string>
+    <!-- Notifikasi -->
+    <string name="notification_title">Notifikasi</string>
+    <string name="empty_notification_title">Belum ada notifikasi</string>
+    <string name="empty_notification_desc">Pengingat, permintaan teman, dan komentar akan muncul di sini.</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_name_placeholder">Pengguna OmniNote</string>
+    <string name="profile_email_placeholder">Belum login</string>
+    <string name="menu_friends">Teman Saya</string>
+    <string name="menu_setting">Setting</string>
+    <string name="menu_logout">Logout</string>
+    <string name="coming_soon">Fitur ini segera hadir</string>
+
+    <!-- Tambah catatan -->
+    <string name="add_note_title">Catatan Baru</string>
+    <string name="hint_title">Judul</string>
+    <string name="hint_desc">Catatan</string>
+    <string name="due_date">Tanggal</string>
+    <string name="start_time">Mulai</string>
+    <string name="end_time">Selesai</string>
+    <string name="location">Lokasi</string>
+    <string name="input_empty_message">Judul dan waktu tidak boleh kosong</string>
+    <string name="location_empty_message">Lokasi belum dipilih. Tekan kartu Lokasi untuk memilih di peta.</string>
+    <string name="location_failed">Gagal mengambil lokasi</string>
+    <string name="permission_denied">Izin lokasi ditolak</string>
+
+    <!-- Setting -->
+    <string name="setting_title">Setting</string>
+    <string name="display_header">Tampilan</string>
+    <string name="pref_dark_title">Mode gelap</string>
     <string name="pref_key_dark" translatable="false">key_dark_mode</string>
     <string name="pref_dark_auto" translatable="false">auto</string>
     <string name="pref_dark_on" translatable="false">on</string>
     <string name="pref_dark_off" translatable="false">off</string>
-    <string name="dark_mode_auto">Automatic</string>
-    <string name="dark_mode_on">Dark mode</string>
-    <string name="dark_mode_off">Light mode</string>
-    <string name="delete_course">Delete Course</string>
-    <string name="time">Time</string>
-    <string name="delete_alert">Delete this course?</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="detail">Course Detail</string>
-    <string name="delete_success_message">Course deleted successfully</string>
-    <string name="sort_by_time">Sort by Time</string>
-    <string name="sort_by_course_name">Sort by Course Name</string>
-    <string name="sort_by_lecturer">Sort by lecturer</string>
-    <string name="empty_home_schedule">There are no more schedules today</string>
-    <string name="empty_list_message">No courses added yet</string>
-    <string name="input_empty_message">Course name and time cannot be empty</string>
+    <string name="dark_mode_auto">Ikuti sistem</string>
+    <string name="dark_mode_on">Gelap</string>
+    <string name="dark_mode_off">Terang</string>
+
+    <!-- Edit catatan -->
+    <string name="edit_note_title">Edit Catatan</string>
+    <string name="choose_location">Pilih lokasi</string>
+    <string name="current_location">Lokasi saat ini</string>
+    <string name="tap_to_choose_location">Tekan untuk memilih lokasi di peta</string>
+
+    <!-- Pilih lokasi -->
+    <string name="picker_title">Pilih Lokasi</string>
+    <string name="hint_place_name">Nama tempat</string>
+    <string name="use_this_location">Pakai lokasi ini</string>
+    <string name="map_not_ready">Tunggu sebentar, peta belum selesai dimuat</string>
+    <string name="move_map_hint">Geser peta sampai pin tepat di lokasi kegiatan</string>
+
+    <!-- Detail catatan -->
+    <string name="detail_title">Detail Catatan</string>
+    <string name="status_done">Selesai</string>
+    <string name="status_not_done">Belum selesai</string>
+    <string name="mark_done">Tandai selesai</string>
+    <string name="mark_not_done">Tandai belum selesai</string>
+    <string name="delete_note">Hapus catatan</string>
+    <string name="delete_confirm_title">Hapus catatan ini?</string>
+    <string name="delete_confirm_message">Catatan dan pengingatnya akan dihapus permanen.</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="open_in_maps">Buka di Google Maps</string>
+    <string name="no_maps_app">Tidak ada aplikasi peta di HP ini</string>
+    <string name="no_description">Tidak ada catatan tambahan</string>
+    <string name="note_not_found">Catatan tidak ditemukan</string>
+    <string name="time_range">%1$s - %2$s</string>
+
+    <!-- Home: ringkasan -->
+    <string name="next_reminder">Kegiatan berikutnya</string>
+    <string name="no_next_reminder">Tidak ada kegiatan yang akan datang</string>
+    <string name="today">Hari ini</string>
+    <string name="insight">Ringkasan</string>
+    <string name="insight_today">Hari ini</string>
+    <string name="insight_done">Selesai</string>
+    <string name="insight_upcoming">Akan datang</string>
+    <string name="done_count">%1$d/%2$d</string>
+
+    <!-- Pengingat / alarm -->
+    <string name="reminder_channel_name">Pengingat kegiatan</string>
+    <string name="reminder_channel_desc">Notifikasi sebelum kegiatan dimulai</string>
+    <string name="reminder_message">Mulai jam %1$s</string>
+    <string name="reminder_message_with_place">Mulai jam %1$s di %2$s</string>
+    <string name="notification_permission_denied">Izin notifikasi ditolak, pengingat tidak akan muncul</string>
+
+    <string name="reminder_header">Pengingat</string>
+    <string name="pref_key_reminder" translatable="false">key_reminder</string>
+    <string name="pref_reminder_title">Aktifkan pengingat</string>
+    <string name="pref_reminder_summary">Notifikasi muncul sebelum kegiatan dimulai</string>
+    <string name="pref_key_reminder_minutes" translatable="false">key_reminder_minutes</string>
+    <string name="pref_reminder_minutes_title">Waktu pengingat</string>
+    <string name="pref_key_exact_alarm" translatable="false">key_exact_alarm</string>
+    <string name="pref_exact_alarm_title">Alarm tepat waktu</string>
+    <string name="pref_exact_alarm_on">Diizinkan</string>
+    <string name="pref_exact_alarm_off">Belum diizinkan, pengingat bisa terlambat beberapa menit. Tekan untuk mengizinkan.</string>
+
+    <string name="back">Kembali</string>
+    <string name="save">Simpan</string>
 </resources>

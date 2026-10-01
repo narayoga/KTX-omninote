@@ -71,6 +71,9 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+//  setting (halaman Setting)
+    implementation("androidx.preference:preference-ktx:1.2.1")
+
 //  livedata
     implementation("androidx.paging:paging-runtime-ktx:3.1.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")

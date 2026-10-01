@@ -1,5 +1,6 @@
 package com.example.omninoteconnect.ui.Note
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omninoteconnect.R
 import com.example.omninoteconnect.databinding.RowNoteBinding
-import com.example.omninoteconnect.util.DateConverter
-import com.example.omninoteconnect.util.DayName
+import com.example.omninoteconnect.util.NoteTimeHelper
 
-class NoteAdapter(private val clickListener:(Notes) -> Unit) :
-    PagedListAdapter<Notes, NoteViewHolder>(DIFF_CALLBACK){
+class NoteAdapter(
+    private val clickListener: (Notes) -> Unit,
+    private val doneListener: (Notes, Boolean) -> Unit
+) : PagedListAdapter<Notes, NoteViewHolder>(DIFF_CALLBACK){
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Notes>() {
@@ -37,7 +39,7 @@ class NoteAdapter(private val clickListener:(Notes) -> Unit) :
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val notes = getItem(position)
         if (notes !== null){
-           holder.bind(notes, clickListener)
+           holder.bind(notes, clickListener, doneListener)
         }
     }
 
@@ -47,23 +49,47 @@ class NoteViewHolder(view: View, binding: RowNoteBinding): RecyclerView.ViewHold
 
     private lateinit var note: Notes
     private val timeString = itemView.context.resources.getString(R.string.time_format)
+    private val locationString = itemView.context.resources.getString(R.string.location_format)
 
     private val titleTextView = binding.tvTitle
     private val timeTextView = binding.tvTime
     private val descTextView = binding.tvDesc
-    private val latTextView = binding.tvLatitude
-    private val lonTextView = binding.tvLongitude
+    private val locationTextView = binding.tvLocation
+    private val doneCheckBox = binding.cbDone
+    private val contentLayout = binding.llContent
 
-    fun bind(notes: Notes, clickListener: (Notes) -> Unit) {
+    fun bind(notes: Notes, clickListener: (Notes) -> Unit, doneListener: (Notes, Boolean) -> Unit) {
         this.note = notes
 
-        note.apply {
-            val timeFormat = String.format(timeString, DateConverter.convertMillisToString(notes.date), startTime, endTime )
-            titleTextView.text = title
-            timeTextView.text = timeFormat
-            descTextView.text = description
-            latTextView.text = latitude.toString()
-            lonTextView.text = longitude.toString()
+        titleTextView.text = notes.title
+        timeTextView.text = String.format(timeString, NoteTimeHelper.formatDate(notes.date), notes.startTime, notes.endTime)
+
+        if (notes.description.isEmpty()) {
+            descTextView.visibility = View.GONE
+        } else {
+            descTextView.visibility = View.VISIBLE
+            descTextView.text = notes.description
+        }
+
+        // kalau ada nama tempat, tampilkan nama tempatnya. Kalau tidak, tampilkan koordinat
+        if (notes.placeName.isNotEmpty()) {
+            locationTextView.text = notes.placeName
+        } else {
+            locationTextView.text = String.format(locationString, notes.latitude, notes.longitude)
+        }
+
+        // catatan yang sudah selesai dicoret dan dibuat agak pudar
+        doneCheckBox.isChecked = notes.isDone
+        if (notes.isDone) {
+            titleTextView.paintFlags = titleTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            contentLayout.alpha = 0.5f
+        } else {
+            titleTextView.paintFlags = titleTextView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            contentLayout.alpha = 1f
+        }
+
+        doneCheckBox.setOnClickListener {
+            doneListener(notes, doneCheckBox.isChecked)
         }
 
         itemView.setOnClickListener{

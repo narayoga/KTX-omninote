@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         binding.buttonStarted.setOnClickListener{
             val intent = Intent(this@MainActivity, DashboardActivity::class.java)
             startActivity(intent)
+            // tutup layar welcome supaya tombol back dari Home tidak kembali ke sini
+            finish()
         }
     }
 

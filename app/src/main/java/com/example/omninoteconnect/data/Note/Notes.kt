@@ -13,5 +13,8 @@ data class Notes(
     @ColumnInfo(name = "endTime") val endTime: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "latitude") val latitude: Double,
-    @ColumnInfo(name = "longitude") val longitude: Double
+    @ColumnInfo(name = "longitude") val longitude: Double,
+    // kolom baru di database versi 2
+    @ColumnInfo(name = "placeName", defaultValue = "") val placeName: String = "",
+    @ColumnInfo(name = "isDone", defaultValue = "0") val isDone: Boolean = false
 )
