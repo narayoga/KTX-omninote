@@ -16,7 +16,7 @@ android {
         minSdk = 22
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1.0-mvp"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -25,6 +25,18 @@ android {
             if (file.exists()) file.inputStream().use { load(it) }
         }
         manifestPlaceholders["MAPS_API_KEY"] = localProperties.getProperty("MAPS_API_KEY", "")
+    }
+
+    // Kunci debug milik proyek (app/debug.keystore), supaya APK dari GitHub Release
+    // dan dari Android Studio ditandatangani dengan kunci yang sama.
+    // Dengan begitu APK versi baru bisa dipasang menimpa versi lama tanpa uninstall.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {
