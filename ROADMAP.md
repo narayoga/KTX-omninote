@@ -8,6 +8,12 @@
 - Pertemanan saling setuju (kirim permintaan -> diterima).
 - Tidak ada chat. Diganti komentar di catatan, dengan balasan 1 tingkat.
 - Backend: Firebase (Auth + Firestore). Firestore jadi satu-satunya sumber data mulai Fase 2.
+- Firebase tetap di paket gratis **Spark**, di project Firebase **terpisah** dari project Google Maps
+  (project Maps sudah punya billing, jadi kalau Firebase dipasang di sana otomatis jadi paket Blaze).
+- Notifikasi dari teman (permintaan teman, komentar) **tidak** memakai push FCM + Cloud Functions (butuh Blaze).
+  Diganti **WorkManager**: aplikasi mengecek Firestore berkala (minimal tiap 15 menit) lalu menampilkan
+  notifikasi lokal. Notifikasi bisa telat >= 15 menit. Jangan menanam kunci service account di APK.
+- Foto profil diganti avatar inisial (Cloud Storage hanya tersedia di paket Blaze sejak Feb 2026).
 - UI tetap XML. Gaya kode pemula (lihat `CLAUDE.md`).
 - Alarm hanya untuk catatan sendiri.
 
@@ -70,7 +76,8 @@ Selesai kalau: login di HP lain, catatan muncul, alarm terjadwal.
 - [ ] Cari user berdasarkan username.
 - [ ] Kirim/terima/tolak/hapus teman.
 - [ ] Tab "Teman" di Home (feed catatan teman).
-- [ ] Notifikasi dalam aplikasi untuk permintaan pertemanan.
+- [ ] Notifikasi permintaan pertemanan: tampil di tab Notifikasi, plus notifikasi HP lewat WorkManager
+      (cek Firestore berkala, minimal tiap 15 menit) saat aplikasi tertutup.
 - [ ] Security rules: catatan hanya bisa dibaca pemilik dan temannya.
 
 Selesai kalau: dua akun berteman saling lihat catatan, akun ketiga tidak bisa.
@@ -86,6 +93,7 @@ Selesai kalau: dua akun berteman saling lihat catatan, akun ketiga tidak bisa.
 
 - [ ] Komentar di detail catatan, balasan 1 tingkat.
 - [ ] Tab Notifikasi: "X mengomentari catatanmu", "Y membalas komentarmu".
+- [ ] Komentar/balasan baru ikut dicek oleh WorkManager yang sama dari Fase 3.
 
 ## Fase 6: Polish
 
@@ -93,7 +101,10 @@ Selesai kalau: dua akun berteman saling lihat catatan, akun ketiga tidak bisa.
 
 ## Risiko (perlu verifikasi saat sampai di fasenya)
 
-- Push notification ke HP lain butuh Cloud Functions -> kemungkinan butuh paket Firebase Blaze (berbayar).
-- Upload foto profil (Cloud Storage) kemungkinan juga butuh paket Blaze. Alternatif: avatar inisial.
-- Google Maps API key butuh billing aktif di Google Cloud.
+- Push notification asli (instan) butuh Cloud Functions -> paket Blaze. Untuk sekarang diganti WorkManager
+  (lihat Keputusan). Kalau nanti telat 15 menit terasa mengganggu, baru pertimbangkan Blaze + budget alert.
+- Paket Blaze tidak punya batas pengeluaran otomatis; budget alert hanya mengirim email.
+- Upload foto profil (Cloud Storage) hanya di paket Blaze. Pakai avatar inisial.
+- Google Maps API key sudah memakai billing di project Google Cloud tersendiri (key dibatasi package + SHA-1).
 - Query Firestore `in` dibatasi sekitar 30 nilai -> feed teman perlu desain khusus kalau teman > 30.
+- Kuota Spark Firestore: 50.000 baca / 20.000 tulis per hari. Hati-hati listener yang terus membaca ulang.
